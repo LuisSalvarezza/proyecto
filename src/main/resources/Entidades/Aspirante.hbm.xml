@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 28-feb-2019 17:26:12 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Entidades.Aspirante" table="aspirante" catalog="bdatos" optimistic-lock="version">
+        <id name="idAspirante" type="java.lang.Integer">
+            <column name="idAspirante" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="categoria" class="Entidades.Categoria" fetch="select">
+            <column name="idCategoria" not-null="true" />
+        </many-to-one>
+        <many-to-one name="escuela" class="Entidades.Escuela" fetch="select">
+            <column name="idEscuela" not-null="true" />
+        </many-to-one>
+        <property name="apellido" type="string">
+            <column name="apellido" length="50" not-null="true" />
+        </property>
+        <property name="nombre" type="string">
+            <column name="nombre" length="70" not-null="true" />
+        </property>
+        <property name="edad" type="string">
+            <column name="edad" length="10" not-null="true" />
+        </property>
+        <property name="sexo" type="char">
+            <column name="sexo" length="1" not-null="true" />
+        </property>
+        <property name="direccion" type="string">
+            <column name="direccion" length="120" />
+        </property>
+        <property name="dni" type="java.lang.Integer">
+            <column name="dni" />
+        </property>
+        <set name="inscripcions" table="inscripcion" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idaspirante" not-null="true" />
+            </key>
+            <one-to-many class="Entidades.Inscripcion" />
+        </set>
+    </class>
+</hibernate-mapping>

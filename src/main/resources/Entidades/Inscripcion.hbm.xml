@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 28-feb-2019 17:26:12 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Entidades.Inscripcion" table="inscripcion" catalog="bdatos" optimistic-lock="version">
+        <composite-id name="id" class="Entidades.InscripcionId">
+            <key-property name="idaspirante" type="int">
+                <column name="idaspirante" />
+            </key-property>
+            <key-property name="idcompetencia" type="int">
+                <column name="idcompetencia" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="aspirante" class="Entidades.Aspirante" update="false" insert="false" fetch="select">
+            <column name="idaspirante" not-null="true" />
+        </many-to-one>
+        <many-to-one name="competencia" class="Entidades.Competencia" update="false" insert="false" fetch="select">
+            <column name="idcompetencia" not-null="true" />
+        </many-to-one>
+        <property name="fechaInscripcion" type="date">
+            <column name="fechaInscripcion" length="10" not-null="true" />
+        </property>
+        <property name="estado" type="java.lang.Character">
+            <column name="estado" length="1" />
+        </property>
+    </class>
+</hibernate-mapping>
